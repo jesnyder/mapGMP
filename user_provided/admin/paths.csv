@@ -1,0 +1,43 @@
+name,path
+data_source,user_provided source formatted
+ref_variable,admin ref_variables.csv
+df_agg,program_generated df df_agg.csv
+df_des,program_generated df df_designated.csv
+df_company,program_generated df companies
+df_company_summary,program_generated df df_company_summary.csv
+df_company_agg_summary,program_generated df counts companies
+df_counts,program_generated df counts
+
+for building plots, including latex figures
+plot_company,program_generated plots company
+plots_simple,program_generated plots simple
+plots_types,program_generated plots counts
+plots_counts_sum,program_generated plots sum_counts
+latex_figs,program_generated latex figs
+counts,program_generated df counts
+latex_report,program_generated latex report.tex
+companies,program_generated lists company.csv
+
+calculated_refs,program_generated df calculated_refs.csv
+
+paths to company address information, for mapping
+company_addresses,user_provided address companies.csv
+company_addresses_generated,program_generated lists address.csv
+company_addresses_generated_meta,program_generated lists address_meta.csv
+company_address_missing,program_generated lists company_address_missing.csv
+address_gps,program_generated lists company_gps.csv
+blankmap_path,user_provided maps blankMap17.png
+blankmap_docs,docs blankMap.png
+company_map,program_generated maps
+
+paths to build webpage, using html and js
+css_src,user_provided css styles.css
+css_dst,docs styles.css
+html_pieces,user_provided html
+html_index,program_generated html index.html
+docs_html,docs
+js_provided,user_provided js
+js_dataset,program_generated datasets
+js_generated,program_generated js
+docs_js,docs js
+docs,docs

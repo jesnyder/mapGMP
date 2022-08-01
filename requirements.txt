@@ -1,0 +1,9 @@
+bs4
+datetime
+google-search-results
+googlemaps
+lxml
+plotly
+pypatent
+scholarly
+selenium

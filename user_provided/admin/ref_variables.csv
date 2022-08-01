@@ -1,0 +1,13 @@
+name,term
+metrics,Application Knowledge$$$Network Breadth$$$Network Strength
+types,Academic$$$Industry$$$Tools
+encodings,ISO-8859-1$$$unicode_escape$$$utf-8
+chars,//$$$'$$$/$$$/$$$.$$$*
+font_size,7
+colorOrange,0.941176$$$0.3254$$$0.1372
+colorPurple,0.137254901961$$$0.105882352941$$$0.3764705882
+colorBlueDark,05$$$0.6$$$0.8470588
+colorBlueLight,0$$$0.737254$$$0.905882
+colorGray,0.9137254$$$0.882352941$$$0.87450980
+plot_dpi,600
+scatterTransparency,0.8
