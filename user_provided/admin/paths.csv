@@ -1,4 +1,10 @@
 name,path
+
+source,material
+source_fda,user_provided fda_inspections inspections.csv
+address_facilities,program_generated fda_inspections facilities.csv
+geojson_facilities,program_generated geojson inspections.js
+
 data_source,user_provided source formatted
 ref_variable,admin ref_variables.csv
 df_agg,program_generated df df_agg.csv
@@ -21,7 +27,8 @@ companies,program_generated lists company.csv
 calculated_refs,program_generated df calculated_refs.csv
 
 paths to company address information, for mapping
-company_addresses,user_provided address companies.csv
+address_provided,user_provided locations facilities.csv
+address_consolidated,program_generated locations facilities.csv
 company_addresses_generated,program_generated lists address.csv
 company_addresses_generated_meta,program_generated lists address_meta.csv
 company_address_missing,program_generated lists company_address_missing.csv
@@ -29,6 +36,7 @@ address_gps,program_generated lists company_gps.csv
 blankmap_path,user_provided maps blankMap17.png
 blankmap_docs,docs blankMap.png
 company_map,program_generated maps
+
 
 paths to build webpage, using html and js
 css_src,user_provided css styles.css

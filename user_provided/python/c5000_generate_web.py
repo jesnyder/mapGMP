@@ -30,7 +30,10 @@ def generate_web():
     generate html and javascript
     """
 
-    # generate js 
+    # create geojson
+    generate_geojson()
+
+    # generate js
     generate_js()
 
     # combine user provided html
@@ -42,6 +45,52 @@ def generate_web():
     shutil.rmtree(retrieve_path('docs'))
     prepare_docs()
 
+
+def generate_geojson():
+    """
+    write geojson
+    """
+
+    df = retrieve_df('address_facilities')
+
+    names = list(df['Legal Name'])
+    lons = list(df['lon'])
+    lats = list(df['lat'])
+
+    f_dst = open(retrieve_path('geojson_facilities'), 'w')
+
+    for i in range(len(names)):
+        circle_name = str('circle_' + str(i))
+        coords_name = str('coords_' + str(i))
+        marker_name = str('markers_' + str(i))
+
+        f_dst.write('\n')
+        f_dst.write('const ' + coords_name + ' = ')
+        f_dst.write('[ ' + str(lats[i]) + ' , ' + str(lons[i]) + ']; ' )
+        f_dst.write('\n')
+
+        f_dst.write('var ' + marker_name + ' = L.marker(')
+        f_dst.write(coords_name + ').addTo(map); ')
+        f_dst.write('\n')
+
+        f_dst.write(marker_name + '.bindPopup("')
+        f_dst.write(names[i])
+        f_dst.write('").openPopup(); ' + '\n')
+        f_dst.write('\n')
+
+        f_dst.write('var ')
+        f_dst.write(circle_name)
+        f_dst.write(' = L.circle(' + coords_name + ', { ')
+        f_dst.write('\n')
+        f_dst.write('color: "red",' + '\n')
+        f_dst.write('fillColor: "#f03",' + '\n')
+        f_dst.write('fillOpacity: 0.5,' + '\n')
+        f_dst.write('radius: 5' + '\n')
+        f_dst.write('}).addTo(map);' + '\n')
+        f_dst.write('\n')
+        f_dst.write('\n')
+
+    f_dst.close()
 
 
 def generate_html():
@@ -142,20 +191,16 @@ def generate_js():
             if 'chartNamePaste' in line:
                 line = line.replace('chartNamePaste', chartName)
 
-            """
             elif 'retrieveDataSet' in line:
-                dataset_name_ref = file.split('.')
-                dataset_name_ref = dataset_name_ref[0]
-                dataset_name_ref = dataset_name_ref.split('-')
-                dataset_name_ref = dataset_name_ref[1]
-                dataset_name_ref = str(dataset_name_ref)
-                print('dataset_name_ref = ' + dataset_name_ref)
+
+                file_geojson = open(os.path.join(retrieve_path('geojson_facilities')), 'r')
+                lines__geojson = file_geojson.readlines()
+                file_geojson.close()
 
                 line = line.replace('retrieveDataSet', '')
-                for dataset_line in retrieveDataSet(dataset_name_ref):
+                for dataset_line in lines__geojson:
                     file_dst.write(dataset_line)
                 continue
-            """
 
             file_dst.write(line)
         file_dst.close()

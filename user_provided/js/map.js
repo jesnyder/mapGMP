@@ -5,9 +5,8 @@
 // const coords = [51.505, -0.09];
 
 // Hillsboro
-const coords = [39.199, -77.725];
-const zoomLevel = 17;
-
+const coords = [39.199, -100];
+const zoomLevel = 10;
 var map = L.map('chartNamePaste').setView(coords, zoomLevel);
 
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -37,3 +36,6 @@ var circleSchool = L.circle(coordsSchool, {
 
 var markerSchool = L.marker(coordsSchool).addTo(map);
 markerSchool.bindPopup("This is the Old Stone School. The ceremony will be held here.").openPopup();
+
+
+retrieveDataSet

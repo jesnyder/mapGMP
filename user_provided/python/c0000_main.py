@@ -24,6 +24,7 @@ from c0002_funcs import normalize_list
 from c0002_funcs import size_list
 from c0002_funcs import list_types
 
+from c1000_analyze_facilities import analyze_facilities
 from c5000_generate_web import generate_web
 
 
@@ -34,6 +35,10 @@ def main():
 
     print("running main")
 
+    # lookup gps
+    analyze_facilities()
+
+    # generate the web material
     generate_web()
 
     print("completed main")
