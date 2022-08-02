@@ -62,6 +62,27 @@ def reset_df(df):
         if 'Unnamed:' in col:
             del df[col]
 
+    return(df)
+
+
+def retrieve_calculated(name_ref):
+    """
+    retrieve value from saved file
+    """
+
+    df = retrieve_df('calculated_refs')
+
+    df_ref = df[df.name == name_ref]
+    metrics = list(df_ref['value'])
+    calculated_value = metrics[0]
+
+    try:
+        calculated_value = round(calculated_value, 3)
+    except:
+        print('tried.')
+
+    return(calculated_value)
+
 
 def retrieve_df(name):
     """
@@ -84,23 +105,26 @@ def retrieve_df(name):
     return(df)
 
 
-def retrieve_calculated(name_ref):
+def retrieve_list(filename):
     """
-    retrieve value from saved file
+    Return a list
+    Saved in a file
+    Referred to by the provided filename
     """
 
-    df = retrieve_df('calculated_refs')
+    f_path = retrieve_path(filename)
+    with open(f_path) as f:
+        alist = [line.rstrip() for line in f]
 
-    df_ref = df[df.name == name_ref]
-    metrics = list(df_ref['value'])
-    calculated_value = metrics[0]
+    """
+    f_path = retrieve_path(filename)
+    f = open(f_path, 'r')
+    lines = f.readlines()
+    f.close()
+    """
 
-    try:
-        calculated_value = round(calculated_value, 3)
-    except:
-        print('tried.')
-
-    return(calculated_value)
+    alist = alist[1:]
+    return(alist)
 
 
 def retrieve_path(name):

@@ -15,7 +15,9 @@ import shutil
 
 from c0001_admin import display_df
 from c0001_admin import list_unique
+from c0001_admin import reset_df
 from c0001_admin import retrieve_df
+from c0001_admin import retrieve_list
 from c0001_admin import retrieve_path
 from c0001_admin import retrieve_ref
 from c0001_admin import str_list
@@ -33,24 +35,18 @@ def analyze_facilities():
     generate html and javascript
     """
 
+    # retrieve and scrub fda inspection data
     df = retrieve_df('source_fda')
     display_df('df', df)
 
-    removed_cols = []
-    removed_cols.append('FEI Number')
-    removed_cols.append('Fiscal Year')
-    removed_cols.append('Inspection ID')
-    removed_cols.append('Posted Citations')
-    removed_cols.append('Inspection End Date')
-    removed_cols.append('Classification')
-    removed_cols.append('Project Area')
-    removed_cols.append('Product Type')
-    removed_cols.append('FMD-145 Date')
-
-    for remove_col in removed_cols:
+    # remove un-used columns
+    for remove_col in retrieve_list('fda_cols_to_remove'):
         del df[remove_col]
 
+    # remove facility types
     df = df.drop_duplicates()
+    df = scrub_facilites(df)
+    display_df('df', df)
 
     consolidate_address()
     lookup_address(df)
@@ -58,7 +54,7 @@ def analyze_facilities():
 
 def consolidate_address():
     """
-
+    list addresses
     """
 
     df_provided = retrieve_df('address_provided')
@@ -75,10 +71,8 @@ def consolidate_address():
     df_consolidated = df_consolidated.sort_values(by = "Legal Name")
     """
 
+    df_consolidated = reset_df(df_consolidated)
     df_consolidated.to_csv(retrieve_path('address_consolidated'))
-
-
-
 
 
 def lookup_address(df):
@@ -125,5 +119,31 @@ def lookup_address(df):
     df['display'] = displays
     df['address'] = addresses
 
+    df = df[df['lat'] != 0]
+    df = reset_df(df)
     df.to_csv(retrieve_path('address_facilities'))
     display_df('df', df)
+
+
+def scrub_facilites(df):
+    """
+    Remove facilities of a certain name
+    """
+
+    df_original = df
+    len_original = len(list(df_original['Legal Name']))
+
+    for name in list(df_original['Legal Name']):
+
+        for term in retrieve_list('facilites_terms_to_remove'):
+
+            if term in name:
+                print('name found ' + str(name) + ' due to ' + str(term))
+                df = df[df['Legal Name'] != name]
+                len_scrubbed = len(list(df['Legal Name']))
+                print(str() + ' original / ' + str(len_scrubbed) + ' scrubbed / ' + str(len_original - len_scrubbed) + ' removed' )
+                continue
+
+    assert len_original > len_scrubbed
+    #df = reset_df(df)
+    return(df)

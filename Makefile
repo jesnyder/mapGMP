@@ -16,3 +16,4 @@ pythonanalysis:
 web:  pythonanalysis
 	python3 -m http.server
 	# python3 -mwebbrowser http://127.0.0.1:8000/report.pdf
+ 

@@ -6,13 +6,17 @@ address_facilities,program_generated fda_inspections facilities.csv
 geojson_facilities,program_generated geojson inspections.js
 
 data_source,user_provided source formatted
-ref_variable,admin ref_variables.csv
+ref_variable,user_provided admin ref_variables.csv
 df_agg,program_generated df df_agg.csv
 df_des,program_generated df df_designated.csv
 df_company,program_generated df companies
 df_company_summary,program_generated df df_company_summary.csv
 df_company_agg_summary,program_generated df counts companies
 df_counts,program_generated df counts
+
+scrubbing data
+facilites_terms_to_remove,user_provided admin facilites_terms_to_remove.csv
+fda_cols_to_remove,user_provided admin fda_cols_to_remove.csv
 
 for building plots, including latex figures
 plot_company,program_generated plots company

@@ -11,3 +11,4 @@ colorBlueLight,0$$$0.737254$$$0.905882
 colorGray,0.9137254$$$0.882352941$$$0.87450980
 plot_dpi,600
 scatterTransparency,0.8
+terms_to_remove,Fertility$$$Reproductive$$$Happy Beginnings$$$Blood Bank$$$Surgical$$$Blood$$$Hospital
