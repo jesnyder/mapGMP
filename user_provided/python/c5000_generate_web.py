@@ -159,6 +159,7 @@ def generate_html():
         lines = f_src.readlines()
         f_src.close()
 
+
         f_dst = open(retrieve_path('html_index'), 'a')
         f_dst.write('\n')
         for line in lines:
@@ -174,7 +175,6 @@ def generate_js():
     """
 
     for file in os.listdir(retrieve_path('js_provided')):
-
 
         file_src = open(os.path.join(retrieve_path('js_provided'), file), 'r')
         print('file found: ' + str(file_src))
@@ -206,8 +206,6 @@ def generate_js():
         file_dst.close()
 
 
-
-
 def prepare_docs():
     """
     combine html
@@ -230,6 +228,11 @@ def prepare_docs():
     # for css styles
     source = retrieve_path('css_src')
     destination = retrieve_path('css_dst')
+    shutil.copy(source, destination)
+
+    # for shape files styles
+    source = retrieve_path('us_counties_shp')
+    destination = retrieve_path('us_counties_shp_docs')
     shutil.copy(source, destination)
 
 

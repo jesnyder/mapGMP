@@ -5,8 +5,8 @@
 // const coords = [51.505, -0.09];
 
 // Hillsboro
-const coords = [39.199, -100];
-const zoomLevel = 5;
+const coords = [39.199, -950];
+const zoomLevel = 4;
 var map = L.map('chartNamePaste').setView(coords, zoomLevel);
 
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {

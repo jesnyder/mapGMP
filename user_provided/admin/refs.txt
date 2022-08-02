@@ -14,3 +14,7 @@ https://datadashboard.fda.gov/ora/cd/inspections.htm
 
 GeoJSON with Leaflet
 https://leafletjs.com/examples/geojson/
+
+
+Example of shape files and Leaflet
+https://stackoverflow.com/questions/43478121/display-shapefile-on-leaflet-map-using-an-uploaded-file-zip

@@ -30,6 +30,10 @@ companies,program_generated lists company.csv
 
 calculated_refs,program_generated df calculated_refs.csv
 
+maps
+us_counties_shp,user_provided shp UScounties.zip
+us_counties_shp_docs,docs shp UScounties.zip
+
 paths to company address information, for mapping
 address_provided,user_provided locations facilities.csv
 address_consolidated,program_generated locations facilities.csv
