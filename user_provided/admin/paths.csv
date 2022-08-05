@@ -28,7 +28,18 @@ counts,program_generated df counts
 latex_report,program_generated latex report.tex
 companies,program_generated lists company.csv
 
+cdc stats
+cdc_stats,user_provided cdc_stats
+bins,program_generated bins
 calculated_refs,program_generated df calculated_refs.csv
+cdc_stats_color,program_generated df cdc_stats
+
+geojon files
+us_counties_geojson,user_provided geojson counties.json
+us_counties_mod,program_generated geojson counties.json
+us_counties_docs,docs js us_counties.json
+geojson_generated,program_generated geojson
+geojson_facility,program_generated geojson facility.json
 
 maps
 us_counties_shp,user_provided shp UScounties.zip
@@ -57,3 +68,4 @@ js_dataset,program_generated datasets
 js_generated,program_generated js
 docs_js,docs js
 docs,docs
+js_facility,program_generated js facility.js

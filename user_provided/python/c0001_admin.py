@@ -12,6 +12,23 @@ from plotly.tools import FigureFactory as ff
 import shutil
 
 
+def color_rgb_str(color_value_list):
+    """
+    return a color for dict
+    from an rgb list
+    """
+
+    for i in range(len(color_value_list)):
+
+        color_value_list[i] = str(int(255*color_value_list[i]))
+
+    color_value_str = str( 'rgb( ' + color_value_list[0] + ' , ' + color_value_list[1] + ' , ' +  color_value_list[2] + ' )')
+    #print('color_value = ' + str(color_value_str))
+    return(color_value_str)
+
+
+
+
 def display_df(df_name, df):
     """
     formatted display of df
@@ -90,13 +107,18 @@ def retrieve_df(name):
     from a pathname
     """
 
-    # check path
-    df_path = retrieve_path(name)
-    print('df_path = ')
-    print(df_path)
 
     # retrieve df
-    df = pd.read_csv(retrieve_path(name))
+    if '.' not in str(name):
+        # check path
+        df_path = retrieve_path(name)
+        print('df_path = ')
+        print(df_path)
+
+        df = pd.read_csv(retrieve_path(name))
+
+    else:
+        df = pd.read_csv(name)
 
     for col in df.columns:
         if 'Unnamed:' in col:
@@ -200,6 +222,26 @@ def retrieve_ref(name):
             term = term
 
     return(term)
+
+
+def rgb_to_hexcolorcode(rgb):
+    """
+    convert an rgb list to a
+    hex color code as a string
+    """
+
+    rgb_orig = rgb
+    for i in range(len(rgb)):
+
+        rgb[i] = rgb[i]*255
+        rgb[i] = int(rgb[i])
+
+    rgb_par = (rgb[0], rgb[1], rgb[2])
+
+    hex_str = '#%02x%02x%02x' % rgb_par
+    hex_str = str(hex_str).upper()
+
+    return(hex_str)
 
 
 def str_list(str_src):

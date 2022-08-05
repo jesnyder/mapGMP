@@ -1,5 +1,6 @@
 import codecs
 import datetime
+import json
 import math
 import matplotlib as mpl
 from matplotlib import cm
@@ -35,6 +36,9 @@ def generate_web():
 
     # generate js
     generate_js()
+
+    # generate js
+    generate_js_from_geojson()
 
     # combine user provided html
     # generate a single index.html file
@@ -116,40 +120,26 @@ def generate_html():
             f_dst = open(retrieve_path('html_index'), 'a')
             f_dst.write('\n')
 
+
+
             for js_file in os.listdir(retrieve_path('js_generated')):
-
-
 
                 js_file_split = js_file.split('.')
 
-                """
-                if 'map' in js_file_split:
-                    f_dst.write('<div>' + '\n')
-                else:
-                    f_dst.write('<div class="chartholder">' + '\n')
-                """
+                if 'map' in js_file:
+                    f_dst.write('\n')
+                    f_dst.write('<div id=' +  str(js_file_split[0]) + '>' )
+                    f_dst.write('</div>' + '\n')
 
-                #f_dst.write('<div>' + '\n')
-                f_dst.write('<div id="' )
-                #f_dst.write('\n')
-
-                #f_dst.write('<canvas id="')
-                f_dst.write(str(js_file_split[0]))
-
-                #f_dst.write('" width="800" height="500">')
-                f_dst.write('">')
-
-                #f_dst.write(' </canvas>')
-                f_dst.write('\n')
-                f_dst.write('</div>' + '\n')
-
-                f_dst.write('<script src="')
+                f_dst.write('<script type="text/javascript"  src="')
                 f_dst.write('js/')
                 f_dst.write(js_file)
                 f_dst.write('"></script>')
                 f_dst.write('\n')
-
                 #f_dst.write('\n')
+
+            f_dst.write('\n')
+
 
             f_dst.write('\n')
             f_dst.close()
@@ -206,6 +196,39 @@ def generate_js():
         file_dst.close()
 
 
+def generate_js_from_geojson():
+    """
+
+    """
+
+    print('hello')
+
+    for file in os.listdir(retrieve_path('geojson_generated')):
+
+        if '.json' not in file: continue
+
+        print('file = ' + str(file))
+
+        file_split = file.split('.')
+        filename = file_split[0]
+
+        file_src = os.path.join(retrieve_path('geojson_generated'), file)
+        print('file_src = ' + str(file_src))
+        f = open(file_src, 'r')
+        values = json.load(f)
+        f.close()
+
+        filename_str = filename.replace('-', '')
+        filename_str = filename.replace('_', '')
+
+        file_dst = os.path.join(retrieve_path('js_generated'), filename + '.js')
+        print('file_dst = ' + str(file_dst))
+        f = open(file_dst, 'w', encoding='latin-1')
+        f.write('var ' + filename + 'Data = ' + '\n')
+        json.dump(values, f, indent = 2)
+        f.close()
+
+
 def prepare_docs():
     """
     combine html
@@ -229,13 +252,6 @@ def prepare_docs():
     source = retrieve_path('css_src')
     destination = retrieve_path('css_dst')
     shutil.copy(source, destination)
-
-    # for shape files styles
-    source = retrieve_path('us_counties_shp')
-    destination = retrieve_path('us_counties_shp_docs')
-    shutil.copy(source, destination)
-
-
 
 
 """

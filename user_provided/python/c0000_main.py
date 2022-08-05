@@ -25,6 +25,7 @@ from c0002_funcs import size_list
 from c0002_funcs import list_types
 
 from c1000_analyze_facilities import analyze_facilities
+from c2000_coregister_stats import coregister_stats
 from c5000_generate_web import generate_web
 
 
@@ -37,6 +38,9 @@ def main():
 
     # lookup gps
     analyze_facilities()
+
+    # coregister cdc datasets
+    #coregister_stats()
 
     # generate the web material
     generate_web()
