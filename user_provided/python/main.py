@@ -2,17 +2,10 @@ import codecs
 import datetime
 import json
 import math
-import matplotlib as mpl
-from matplotlib import cm
-import matplotlib.pyplot as plt
-from matplotlib.colors import LinearSegmentedColormap
 import numpy as np
 import os
 from random import random
-import requests
 import pandas as pd
-import plotly
-from plotly.tools import FigureFactory as ff
 import shutil
 
 
@@ -140,9 +133,9 @@ def js_fda():
     # read in fda inspection list
     # downloaded from FDA Data Portal
     df = pd.read_csv(retrieve_path('fda_src'))
-    len_original = len(list(df['Legal Name']))
-    print('original len = ' + str(len_original))
-
+    # remove duplicate facilities
+    # keep the most recent inspection year
+    df = df.sort_values(by=['Fiscal Year'], axis=0, ascending=False)
     df = df.drop_duplicates(subset=['FEI Number'], keep='first')
     len_original = len(list(df['Legal Name']))
     print('original len = ' + str(len_original))
