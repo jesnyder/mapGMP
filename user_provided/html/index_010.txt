@@ -1,5 +1,0 @@
-
-<div id="text">
-<h1>Map of FDA Inspection Sites</h1>
-<p>The US FDA publishes inspection records through their data dashboard (https://datadashboard.fda.gov/ora/cd/inspections.htm). This map shows some locations that have a biological product type and cite tissues, cells, or genes as their product type. This list is not comprehensive. </p>
-</div>

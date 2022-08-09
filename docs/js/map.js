@@ -2,7 +2,7 @@ var map = L.map('map').setView([37.8, -96], 4);
 
 	var tiles = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 		maxZoom: 19,
-		attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+		attribution: '&copy; <a href="http://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a>'
 	}).addTo(map);
 
 	// control that shows state info on hover
@@ -15,23 +15,12 @@ var map = L.map('map').setView([37.8, -96], 4);
 	};
 
 	info.update = function (props) {
-		this._div.innerHTML = '<h4>US Arthritis-Crude Prevalence</h4>' +  (props ?
-			'<b>' + props.LSAD + '</b><br />' + props['Arthritis-Crude Prevalence'] + ' people / mi<sup>2</sup>' : 'Hover over a state');
+		this._div.innerHTML = '<b>US Arthritis-Crude Prevalence</b>' +  (props ?
+			'<br><b>' + props.NAME + '</b><br><b>' + props['Arthritis-Crude Prevalence'] + '%</b> with arthritis' : '<br>Hover over a state');
 	};
 
 	info.addTo(map);
 
-
-	// get color depending on population density value
-	function getColor(d) {
-		return d > 35 ? '#800026' :
-			d > 30  ? '#BD0026' :
-			d > 25  ? '#E31A1C' :
-			d > 20  ? '#FC4E2A' :
-			d > 15   ? '#FD8D3C' :
-			d > 10   ? '#FEB24C' :
-			d > 5   ? '#FED976' : '#FFEDA0';
-	}
 
 	function style(feature) {
 		return {
@@ -43,6 +32,7 @@ var map = L.map('map').setView([37.8, -96], 4);
 			fillColor: feature.properties.Color
 		};
 	}
+
 
 	function highlightFeature(e) {
 		var layer = e.target;
@@ -61,10 +51,10 @@ var map = L.map('map').setView([37.8, -96], 4);
 		info.update(layer.feature.properties);
 	}
 
-	var geojson;
+
 
 	function resetHighlight(e) {
-		geojson.resetStyle(e.target);
+		geojson_counties.resetStyle(e.target);
 		info.update();
 	}
 
@@ -80,43 +70,30 @@ var map = L.map('map').setView([37.8, -96], 4);
 		});
 	}
 
-	/* global statesData */
-	geojson = L.geoJson(countiesData, {
-		style: style,
-		onEachFeature: onEachFeature
-	}).addTo(map);
+	function onEachFacility(feature, layer) {
+			var website = feature.properties.website;
 
-	map.attributionControl.addAttribution('CDC &copy; <a href="https://www.cdc.gov/arthritis/data_statistics/state-data-current.htm">Arthritis Statistics</a>');
-
-
-	var legend = L.control({position: 'bottomright'});
-
-	legend.onAdd = function (map) {
-
-		var div = L.DomUtil.create('div', 'info legend');
-		var grades = [5, 10, 15, 20, 25, 30, 35, 40];
-		var labels = [];
-		var from, to;
-
-		for (var i = 0; i < grades.length; i++) {
-			from = grades[i];
-			to = grades[i + 1];
-
-			labels.push(
-				'<i style="background:' + getColor(from + 1) + '"></i> ' +
-				from + (to ? '&ndash;' + to : '+'));
+			var popupContent = '<b>' +
+					feature.properties.name + '</b><br>' + '<a href="' + feature.properties.website + '" target="_blank" rel="noopener">' + feature.properties.website + '</a>'  + '<br>' + feature.properties.city + ', ' + feature.properties.state + '</p>';
+			if (feature.properties && feature.properties.popupContent) {
+				popupContent += feature.properties.popupContent;
+			}
+			layer.bindPopup(popupContent);
 		}
 
-		div.innerHTML = labels.join('<br>');
-		return div;
-	};
-
-	legend.addTo(map);
-
-
-
 	/* global statesData */
-	geojson = L.geoJson(facilityData, {
+	var geojson_counties = L.geoJson(countiesData, {
 		style: style,
 		onEachFeature: onEachFeature
 	}).addTo(map);
+
+
+	/* global statesData */
+	var geojson_facility = L.geoJson(facilityData, {
+		style: style,
+		onEachFeature: onEachFacility
+	}).addTo(map);
+
+
+	/* cite source of information */
+	map.attributionControl.addAttribution('| <a href="https://www.cdc.gov/arthritis/data_statistics/state-data-current.htm" target="_blank" rel="noopener">CDC Arthritis Statistics</a> | <a href="https://datadashboard.fda.gov/ora/cd/inspections.htm" target="_blank" rel="noopener"> FDA Inspection Record </a>' );

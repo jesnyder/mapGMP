@@ -4,7 +4,7 @@ DEFAULT_GOAL: web
 getreqs:
 	sudo apt-get clean
 	sudo apt install texlive-latex-base
-	pip install --upgrade -r requirements.txt
+	pip install --upgrade -r reqs.txt
 
 
 .PHONY: pythonanalysis

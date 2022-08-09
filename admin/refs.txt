@@ -1,0 +1,30 @@
+GeoJSON
+https://digital-geography.com/gis-with-javascript-tutorial-part-1/
+
+
+Leaflet with GeoJSON
+https://leafletjs.com/examples/geojson/
+
+
+FDA cGMP facility inspections
+https://datadashboard.fda.gov/ora/cd/inspections.htm
+
+
+GeoJSON with Leaflet
+https://leafletjs.com/examples/geojson/
+
+
+Example of shape files and Leaflet
+https://stackoverflow.com/questions/43478121/display-shapefile-on-leaflet-map-using-an-uploaded-file-zip
+
+
+Leaflet Interactive Choropleth Map
+https://leafletjs.com/examples/choropleth/
+
+
+Leaflet Plot points
+https://leafletjs.com/examples/geojson/
+
+
+FDA Data
+https://datadashboard.fda.gov/ora/glossary.htm

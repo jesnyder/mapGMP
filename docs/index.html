@@ -2,7 +2,7 @@
 Source Code: 
 https://github.com/jesnyder/mapGMP
 Generated: 
-2022-08-04 23:50:47.209668
+2022-08-07 19:04:07.986898
 -->
 
 <!DOCTYPE html>
@@ -24,8 +24,8 @@ Generated:
 			margin: 0;
 		}
 		.leaflet-container {
-			height: 400px;
-			width: 600px;
+			height: 500px;
+			width: 100%;
 			max-width: 100%;
 			max-height: 100%;
 		}
@@ -38,9 +38,17 @@ Generated:
 
 
 <div id="text">
-<h1>Map of FDA Inspection Sites</h1>
-<p>The US FDA publishes inspection records through their data dashboard (https://datadashboard.fda.gov/ora/cd/inspections.htm). This map shows some locations that have a biological product type and cite tissues, cells, or genes as their product type. This list is not comprehensive. </p>
+<h1>FDA Inspection Sites and CDC Health Statistics</h1>
+<p>
+	The US FDA publishes inspection records through their data dashboard
+	(https://datadashboard.fda.gov/ora/cd/inspections.htm). This map shows
+	 some locations that have a biological product type and cite tissues,
+	 cells, or genes as their product type. This list is not comprehensive.
+
+ </p>
 </div>
+
+
 
 
 <script type="text/javascript"  src="js/counties.js"></script>
@@ -52,6 +60,53 @@ Generated:
 
 
 
+<div id="desc">
+<h1>The making of the map.</h1>
+<p>
+	The US FDA publishes inspection records through their data dashboard
+	(https://datadashboard.fda.gov/ora/cd/inspections.htm). This map shows
+	 some locations that have a biological product type and cite tissues,
+	 cells, or genes as their product type. This list is not comprehensive.
+	 <br>
+	 The CDC published statistic on disease, including arthritis, by county.
+	 The map shows the crude prevalence of arthritis in each county as a percentage
+	 of population. Red counties have a higher prevalence of arthritis than
+	 white counties. The highest prevalence is 42% of the county population.
+	 <br>
+
+ </p>
+</div>
+
+<div id=refs>
+<p>
+<b>   References</b>
+
+<ol>
+
+<li> CDC Statistics - Arthritis
+	<a href="https://www.cdc.gov/arthritis/data_statistics/state-data-current.htm">
+		https://www.cdc.gov/arthritis/data_statistics/state-data-current.htm</a>
+</li>
+
+<li> US Food & Drug Administration (FDA) Inspectoin Record
+	<a href="https://datadashboard.fda.gov/ora/cd/inspections.htm">
+		https://datadashboard.fda.gov/ora/cd/inspections.htm</a>
+</li>
+
+<li> Leaflet - an open-source JavaScript library for mobile-friendly interactive maps.
+	<a href="https://leafletjs.com/index.html">
+		https://leafletjs.com/index.html</a>
+</li>
+
+<li> OpenStreetMap - collaborative project to create a free editable geographic database of the world.
+	<a href="https://www.openstreetmap.org/copyright">
+		https://www.openstreetmap.org/copyright</a>
+</li>
+
+
+</ol>
+</p>
+</div>
 
 </body>
 </html>
