@@ -8,8 +8,8 @@ getreqs:
 
 
 .PHONY: pythonanalysis
-pythonanalysis:
-	python3  user_provided/python/c0000_main.py
+pythonanalysis: getreqs
+	python3  user_provided/python/main.py
 
 
 .PHONY: web

@@ -1,0 +1,16 @@
+name,path
+
+geojson geography
+geojson_src,user_provided geojson
+
+cdc,
+cdc_df,user_provided cdc countiesData.csv
+cdc_js,docs js cdc.js
+
+fda
+fda_src,user_provided fda facilities.csv
+fda_scrub,user_provided fda facilities_scrub.csv
+fda_geotagged,user_provided fda facilities_geotagged.csv
+fda_js,docs js fda.js
+fda_cols_to_remove,user_provided admin fda_cols_to_remove.csv
+facilites_terms_to_remove,user_provided admin facilites_terms_to_remove.csv

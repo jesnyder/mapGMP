@@ -16,7 +16,7 @@ var map = L.map('map').setView([37.8, -96], 4);
 
 	info.update = function (props) {
 		this._div.innerHTML = '<b>US Arthritis-Crude Prevalence</b>' +  (props ?
-			'<br><b>' + props.NAME + '</b><br><b>' + props['Arthritis-Crude Prevalence'] + '%</b> with arthritis' : '<br>Hover over a state');
+			'<br><b>' + props.NAME + '</b><br><b>' + props['Arthritis-Crude Prevalence']['value'] + '%</b> with arthritis' : '<br>Hover over a state');
 	};
 
 	info.addTo(map);
@@ -29,7 +29,7 @@ var map = L.map('map').setView([37.8, -96], 4);
 			color: 'white',
 			dashArray: '3',
 			fillOpacity: 0.7,
-			fillColor: feature.properties.Color
+			fillColor: feature.properties['Arthritis-Crude Prevalence']['color']
 		};
 	}
 
@@ -50,7 +50,6 @@ var map = L.map('map').setView([37.8, -96], 4);
 
 		info.update(layer.feature.properties);
 	}
-
 
 
 	function resetHighlight(e) {
@@ -81,8 +80,9 @@ var map = L.map('map').setView([37.8, -96], 4);
 			layer.bindPopup(popupContent);
 		}
 
+
 	/* global statesData */
-	var geojson_counties = L.geoJson(countiesData, {
+	var geojson_counties = L.geoJson(cdc_stats, {
 		style: style,
 		onEachFeature: onEachFeature
 	}).addTo(map);

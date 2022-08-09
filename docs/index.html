@@ -1,7 +1,7 @@
 <!--
-Source Code: 
+Source Code:
 https://github.com/jesnyder/mapGMP
-Generated: 
+Generated:
 2022-08-07 19:04:07.986898
 -->
 
@@ -40,31 +40,7 @@ Generated:
 <div id="text">
 <h1>FDA Inspection Sites and CDC Health Statistics</h1>
 <p>
-	The US FDA publishes inspection records through their data dashboard
-	(https://datadashboard.fda.gov/ora/cd/inspections.htm). This map shows
-	 some locations that have a biological product type and cite tissues,
-	 cells, or genes as their product type. This list is not comprehensive.
-
- </p>
-</div>
-
-
-
-
-<script type="text/javascript"  src="js/counties.js"></script>
-<script type="text/javascript"  src="js/facility.js"></script>
-
-<div id=map></div>
-<script type="text/javascript"  src="js/map.js"></script>
-<script type="text/javascript"  src="js/states.js"></script>
-
-
-
-<div id="desc">
-<h1>The making of the map.</h1>
-<p>
-	The US FDA publishes inspection records through their data dashboard
-	(https://datadashboard.fda.gov/ora/cd/inspections.htm). This map shows
+	The US FDA publishes inspection records of facilities domestically and abroad. This map shows
 	 some locations that have a biological product type and cite tissues,
 	 cells, or genes as their product type. This list is not comprehensive.
 	 <br>
@@ -72,7 +48,53 @@ Generated:
 	 The map shows the crude prevalence of arthritis in each county as a percentage
 	 of population. Red counties have a higher prevalence of arthritis than
 	 white counties. The highest prevalence is 42% of the county population.
-	 <br>
+	 <br>.
+
+ </p>
+</div>
+
+<div id=map></div>
+<script type="text/javascript"  src="js/fda.js"></script>
+<script type="text/javascript"  src="js/cdc.js"></script>
+<script type="text/javascript"  src="js/map.js"></script>
+
+
+<div id="desc">
+<h1>The making of the map.</h1>
+<p>
+	<b>Objective:</b> <br> Overlay the location of US-FDA inspected facilities
+	with a heatmap of arthritis in the United States.
+	<br> <br> <b>Tasks:</b>
+	<ol>
+	<li> Initialize a git repo for the source data,
+		code to process the data (python), and
+		code to create the website (html, css, and js).
+		<a href="https://github.com/jesnyder/mapGMP"_blank" rel="noopener">https://github.com/jesnyder/mapGMP</a>
+	<li> Download CDC Statistics: Download the Arthritis-Crude Prevalence
+		statistics for the most recent year (2015).
+		<a href="https://www.cdc.gov/arthritis/data_statistics/state-data-current.htm" target="_blank" rel="noopener">https://www.cdc.gov/arthritis/data_statistics/state-data-current.htm</a>
+	<li> Download a geoJSON file describing the shape of each US county
+	<li> Coregister the downloaded CDC Statistics with geographic description of the
+		US county using the countyFID as a common idenifier.
+	<li> Download the US FDA inspection records. Filter the results online before downloading.
+		Limit the "Project Area" to "Human Cellular, Tissue, and Gene Therapy", the "Product Type" to "Biologics", the Fiscal Year to
+		all years since and including 2015, and the facility passed inspection, meaning
+		the "Classification" is only "No Action Indicated (NAI)". The Data Dashboard returned more than 3000 results fitting the aforementioned criteria.
+		<a href="https://datadashboard.fda.gov/ora/cd/inspections.htm"_blank" rel="noopener">https://datadashboard.fda.gov/ora/cd/inspections.htm</a>
+	<li> Scrub the FDA facility list to remove locations working on
+		fertility, organ/tissue donation, blood donation, cornea implants,
+		medical offices, medical supply companies, dental implant manufacturers,
+		and most spine-focused projects.
+		These restriction filtered the list from more than 3000 records to 500.
+		<li> Prepare the FDA facility list to be mapped as a series of
+			annotated points. To do this, convert the FDA inspection site list, which is
+			a .csv converted to a pandas dataframe, to geoJSON and save as a .js file
+			that sets the geoJSON equal to a unique variable.
+		<li> Build the interactive website. Leverage Leaflet tutorials to write the html, css, and js to build the website
+			using the county data coregistered with cdc statistics and the
+			fda facility list as a series of points.
+	</ol>
+
 
  </p>
 </div>
@@ -83,7 +105,7 @@ Generated:
 
 <ol>
 
-<li> CDC Statistics - Arthritis
+<li> Retrieve CDC Statistics - Arthritis
 	<a href="https://www.cdc.gov/arthritis/data_statistics/state-data-current.htm">
 		https://www.cdc.gov/arthritis/data_statistics/state-data-current.htm</a>
 </li>
@@ -110,4 +132,3 @@ Generated:
 
 </body>
 </html>
-
