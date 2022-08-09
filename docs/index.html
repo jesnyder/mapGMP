@@ -76,7 +76,7 @@ Generated:
 	The facilities shown do not represent a comprehensie list, but a place to begin.
 
 	<br><br>
-	<b>cGMP Facilities Identified from Public FDA Inspection Records.</b><br>
+	<b>cGMP Facilities Identified from FDA Inspection Records.</b><br>
 	The US FDA enforces current Good Manufacturing (cGMP) regulations by
 	inspecting facilites worldwide that make active ingredients and finished products.
 	<a href="https://www.fda.gov/drugs/pharmaceutical-quality-resources/facts-about-current-good-manufacturing-practices-cgmps"
@@ -105,26 +105,7 @@ Generated:
 	 in the upper right corner of the map.
 	 The higher the prevalence, the more red the county will be appear.
 
-	 Arthritis is of particular interest, because allogeneic MSC
-	 offer great promise in the treatment of arthritis due to their
-	 anti-inflammatory proerties.
-	 <a href="https://pubmed.ncbi.nlm.nih.gov/25481552/"
- 	 target="_blank" rel="noopener">[5]</a>
 
-	  MSC therapies for arthritis have been approved for a decade abroad.
-	 Stem cell therapeutic developer, Medi-Post commercialized
-	 an allogenic MSC therapy to treat osteoarthritis, CartiStem,
-	 which has been approved for use in Korea since 2012.
-	 <a href="https://www.medi-post.com/cartistem/"
-   target="_blank" rel="noopener">[7]</a>
-
-	 Even expensive therapies are viable.
-	The CDC estimates arthritis costs the US $303.5 billion each year through
-	medical expenses and lost wages.
-	<a href="https://www.cdc.gov/chronicdisease/resources/publications/factsheets/arthritis.htm"
-	target="_blank" rel="noopener">[6]</a>
-
-	 <br>.
 
  </p>
 </div>
@@ -136,6 +117,28 @@ Generated:
 
 
 <div id="desc"  style="width:80% ; margin-left: 3%; font-family:Calibri;">
+
+<h1>MSC Capacity for Arthritis </h1>
+Arthritis is of particular interest, because allogeneic MSC
+show strong potential as a treatment due to their
+anti-inflammatory proerties.
+<a href="https://pubmed.ncbi.nlm.nih.gov/25481552/"
+target="_blank" rel="noopener">[5]</a>
+
+ MSC therapies for arthritis have been approved abroad for a decade.
+Stem cell therapeutic developer, Medi-Post commercialized
+an allogenic MSC therapy to treat osteoarthritis, CartiStem,
+which has been approved for use in Korea since 2012.
+<a href="https://www.medi-post.com/cartistem/"
+target="_blank" rel="noopener">[7]</a>
+
+Even expensive therapies are viable.
+The CDC estimates arthritis costs the US $303.5 billion each year through
+medical expenses and lost wages.
+<a href="https://www.cdc.gov/chronicdisease/resources/publications/factsheets/arthritis.htm"
+target="_blank" rel="noopener">[6]</a>
+
+
 <h1>The making of the map.</h1>
 <p>
 	<b>Objective:</b> <br> Overlay the location of US-FDA inspected facilities
@@ -148,45 +151,63 @@ Generated:
 		code to process the data (python), and
 		code to create the website (html, css, and js). GitHub pages serve the site.
 			<br>
-		<a href="https://github.com/jesnyder/mapGMP"_blank" rel="noopener">https://github.com/jesnyder/mapGMP</a>
+		<a href="https://github.com/jesnyder/mapGMP"
+		target="_blank" rel="noopener">https://github.com/jesnyder/mapGMP</a>
 
-
-	<br> <br><li> <b>Retrieve CDC Statistics</b> Download the Arthritis-Crude Prevalence
-		statistics for the most recent year (2015).
-			<br>
-	<a href="https://www.cdc.gov/arthritis/data_statistics/state-data-current.htm" target="_blank" rel="noopener">https://www.cdc.gov/arthritis/data_statistics/state-data-current.htm</a>
-
-	<br> <br><li> <b>Define US Counties:</b> Download a geoJSON file describing the shape of each US county
+		<br><li> <b>Define Each US County:</b>
+		Download a geoJSON file describing the shape of each US county
 		<br>
-		<a href="https://eric.clst.org/tech/usgeojson/"_blank" rel="noopener">https://eric.clst.org/tech/usgeojson/</a>
+		<a href="https://eric.clst.org/tech/usgeojson/"
+		 target="_blank" rel="noopener">https://eric.clst.org/tech/usgeojson/</a>
 
 
-	<br> <br><li> <b>Heatmap CDC Statistics per US County: </b> Coregister the downloaded CDC Statistics with geographic description of the
-		US county using the countyFID as a common idenifier. Create a .js file where a unique variable is set equal to the county geoJSON with the cdc statistics.
+	  <br><li> <b>Heatmap CDC Statistics per US County: </b>
+		Download the Arthritis-Crude Prevalence statistics for the most recent year (2015).
+		<br>
+		<a href="https://www.cdc.gov/arthritis/data_statistics/state-data-current.htm"
+		 target="_blank" rel="noopener">https://www.cdc.gov/arthritis/data_statistics/state-data-current.htm</a>
+		<br>
+		Coregister the downloaded CDC Statistics with geographic description of the
+		US county using the countyFID as a common idenifier.
+		Create a .js file where a unique variable is set equal to the county geoJSON with the cdc statistics.
 
-	<br> <br><li> <b>Retrieve FDA Inspection Records:</b> Download the US FDA inspection records. Filter the results online before downloading.
+	  <br><li> <b>Retrieve FDA Inspection Records:</b>
+		Download the US FDA inspection records.
+		Filter the results online before downloading.
 		Limit the "Project Area" to "Human Cellular, Tissue, and Gene Therapy", the "Product Type" to "Biologics", the Fiscal Year to
 		all years since and including 2015, and the facility passed inspection, meaning
 		the "Classification" is only "No Action Indicated (NAI)". The Data Dashboard returned more than 3000 results fitting the aforementioned criteria.
-			<br>
-			<a href="https://datadashboard.fda.gov/ora/cd/inspections.htm"_blank" rel="noopener">https://datadashboard.fda.gov/ora/cd/inspections.htm</a>
+		<br>
+		<a href="https://datadashboard.fda.gov/ora/cd/inspections.htm"
+		 target="_blank" rel="noopener">https://datadashboard.fda.gov/ora/cd/inspections.htm</a>
 
+		<br><li> <b>Map FDA Inspection Record as Flagged Locations: </b>
+		Scrub the FDA facility list to remove locations working on
+		fertility, organ/tissue donation, blood donation, cornea implants,
+		medical offices, medical supply companies, dental implant manufacturers,
+		and most spine-focused projects.
+		These restriction filtered the list from more than 3000 records to 342 facilities of interest.
 
-		<br> <br><li> <b>Map FDA Inspection Record as Flagged Locations: </b>
-			Scrub the FDA facility list to remove locations working on
-				fertility, organ/tissue donation, blood donation, cornea implants,
-				medical offices, medical supply companies, dental implant manufacturers,
-				and most spine-focused projects.
-				These restriction filtered the list from more than 3000 records to 342 facilities of interest.
+		Prepare the FDA facility list to be mapped as a series of
+		annotated points. To do this, convert the FDA inspection site list, which is
+		a .csv converted to a pandas dataframe, to geoJSON and save as a .js file
+		that sets the geoJSON equal to a unique variable.
 
-			Prepare the FDA facility list to be mapped as a series of
-			annotated points. To do this, convert the FDA inspection site list, which is
-			a .csv converted to a pandas dataframe, to geoJSON and save as a .js file
-			that sets the geoJSON equal to a unique variable.
-
-		<br> <br><li> <b>Serve the Website: </b> Build the interactive website. Leverage Leaflet tutorials to write the html, css, and js to build the website
-			using the county data coregistered with cdc statistics and the
-			fda facility list as a series of points.
+		<br><li> <b>Serve the Website: </b>
+		Build the interactive website.
+		Leverage Leaflet tutorials to write the html, css, and js to build the website
+		using the county data coregistered with cdc statistics and the
+		fda facility list as a series of points.
+		The Leaflet Interactive Choropleth Map is especially helpful.
+		<br>
+		<a href="https://leafletjs.com/examples/choropleth/"
+		 target="_blank" rel="noopener">https://leafletjs.com/examples/choropleth/</a>
+		<br>
+		On github, setup a Pages to serve the website from the docs file of the repo.
+		<br>
+		<a href="https://jesnyder.github.io/mapGMP/"
+		 target="_blank" rel="noopener">https://jesnyder.github.io/mapGMP/</a>
+		<br>
 
 	</ol>
 
