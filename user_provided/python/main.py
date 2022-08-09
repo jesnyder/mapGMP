@@ -143,6 +143,10 @@ def js_fda():
     len_original = len(list(df['Legal Name']))
     print('original len = ' + str(len_original))
 
+    df = df.drop_duplicates(subset=['FEI Number'], keep='first')
+    len_original = len(list(df['Legal Name']))
+    print('original len = ' + str(len_original))
+
     # remove facilities flagged to ignore
     df = scrub_fda(df)
     len_scrubbed = len(list(df['Legal Name']))
@@ -172,7 +176,8 @@ def scrub_fda(df):
     if 'Ignore' in df.columns:
         df = df[df.Ignore != 'yes']
 
-    df = df.drop_duplicates(keep='first')
+    #del df['Fiscal Year']
+    df = df.drop_duplicates(subset=['FEI Number'], keep='first')
 
     # remove un-used columns
     for remove_col in retrieve_list('fda_cols_to_remove'):
@@ -200,6 +205,8 @@ def scrub_fda(df):
 
     assert len_original > len_scrubbed
     print(str(len_original) + ' original / ' + str(len_scrubbed) + ' scrubbed / ' + str(len_original - len_scrubbed) + ' removed' )
+
+    df = df.drop_duplicates(keep='first')
     df = reset_df(df)
 
     df_original.to_csv(retrieve_path('fda_scrub'))

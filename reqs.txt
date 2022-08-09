@@ -1,11 +1,3 @@
-bs4
 datetime
 geojsonio
-google-search-results
-googlemaps
-lxml
 pandas-geojson
-plotly
-pypatent
-scholarly
-selenium

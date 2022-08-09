@@ -18,6 +18,8 @@ Generated:
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css" integrity="sha512-hoalWLoI8r4UszCkZ5kL8vayOGVae1oxXe/2A4AO6J9+580uKHDO3JdHb7NzwwzK5xr/Fs0W40kiNHxM9vyTtQ==" crossorigin=""/>
     <script src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js" integrity="sha512-BB3hKbKWOc9Ez/TAwyWxNXeoV9c1v6FIeYiBieIWkpLjauysF18NzgR1MBNBXf8/KABdlkX68nAhlwcDFLGPCQ==" crossorigin=""></script>
 
+<link rel="myDiv" href="styles.css">
+
 	<style>
 		html, body {
 			height: 100%;
@@ -29,6 +31,8 @@ Generated:
 			max-width: 100%;
 			max-height: 100%;
 		}
+
+
 	</style>
 
 </head>
@@ -36,15 +40,53 @@ Generated:
 <body>
 
 
-
-<div id="text">
+<div id="text" style="width:80% ; margin-left: 3%">
 <h1>FDA Inspection Sites and CDC Health Statistics</h1>
 <p>
-	The US FDA publishes inspection records of facilities domestically and abroad. This map shows
-	 some locations that have a biological product type and cite tissues,
-	 cells, or genes as their product type. This list is not comprehensive.
+	Hundreds of cGMP facilities exists to manufacture regenerative therapies
+	needed to treat chronic disease, including arthritis. Is that manufacturing capacity
+	sufficient and is it located in proximity to patient populations?
+	Let's build a map of FDA inspected facilities producing biological products
+	overlaid on a heatmap of a leading degenerative disease, arthritis, to better understand.
+
+	<br><br>
+
+	The US FDA enforces Current Good Manufacturing (cGMP) regulations by
+	inspecting facilites worldwide that make active ingredients and finished products.
+	<a href="https://www.fda.gov/drugs/pharmaceutical-quality-resources/facts-about-current-good-manufacturing-practices-cgmps"
+	target="_blank" rel="noopener">[1] </a>
+
+	Inspection records are publicly available through the FDA Compliance Dashboard.
+	<a href="https://datadashboard.fda.gov/ora/cd/inspections.htm"
+	target="_blank" rel="noopener">[2] </a>
+
+	 This map shows 516 facilities worldwide that passed FDA inspection in the past 5 years
+	 that produce a biological product related to human tissue or gene vectors.
+
 	 <br>
-	 The CDC published statistic on disease, including arthritis, by county.
+	 The FDA inspection manufacturing facilities are mapped over a heatmap of
+	 CDC statistics on arthritis.
+
+	 MSC could be uniquely equipped to treat arthritis.
+	 Allogeneic MSC offer great promise in the treatment of arthritis due to their
+	 anti-inflammatory proerties.
+	 <a href="https://pubmed.ncbi.nlm.nih.gov/25481552/"
+ 	 target="_blank" rel="noopener">[3] </a>
+
+	 Even expensive therapies are viable.
+	 The CDC estimates arthritis costs the US $303.5 billion each year through
+	 medical expenses and lost wages.
+	 <a href="https://www.cdc.gov/chronicdisease/resources/publications/factsheets/arthritis.htm"
+   target="_blank" rel="noopener">[4] </a>
+
+	 MSC therapies for arthritis have been approved for a decade abroad.
+	 Stem cell therapeutic developer, Medi-Post commercialized
+	 an allogenic MSC therapy to treat osteoarthritis, CartiStem,
+	 which has been approved for use in Korea since 2012.
+	 <a href="https://www.medi-post.com/cartistem/"
+   target="_blank" rel="noopener">[5] </a>
+
+	 CDC published statistic on disease, including arthritis, by county.
 	 The map shows the crude prevalence of arthritis in each county as a percentage
 	 of population. Red counties have a higher prevalence of arthritis than
 	 white counties. The highest prevalence is 42% of the county population.
@@ -59,7 +101,7 @@ Generated:
 <script type="text/javascript"  src="js/map.js"></script>
 
 
-<div id="desc">
+<div id="desc"  style="width:80% ; margin-left: 3%">
 <h1>The making of the map.</h1>
 <p>
 	<b>Objective:</b> <br> Overlay the location of US-FDA inspected facilities
@@ -93,13 +135,14 @@ Generated:
 		<li> Build the interactive website. Leverage Leaflet tutorials to write the html, css, and js to build the website
 			using the county data coregistered with cdc statistics and the
 			fda facility list as a series of points.
+		<li> Explore!
 	</ol>
 
 
  </p>
 </div>
 
-<div id=refs>
+<div id=refs  style="width:80% ; margin-left: 3%">
 <p>
 <b>   References</b>
 
