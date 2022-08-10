@@ -36,7 +36,7 @@ def main():
     print("running main")
 
     # coregister county geojson with cdc stats
-    js_cdc_stats()
+    js_cdc_stats() 
 
     # create js var from geojson
     js_fda()
