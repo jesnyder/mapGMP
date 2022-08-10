@@ -1,4 +1,42 @@
-var map = L.map('map').setView([37.8, -96], 4);
+var cities = L.layerGroup();
+var fdaLocs = L.layerGroup();
+var cdcStats = L.layerGroup();
+
+
+
+
+var mbAttr = 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>';
+var mbUrl = 'https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw';
+var streets = L.tileLayer(mbUrl, {id: 'mapbox/streets-v11', tileSize: 512, zoomOffset: -1, attribution: mbAttr});
+
+var osm = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+		maxZoom: 19,
+		attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+	});
+
+
+//var map = L.map('map').setView([37.8, -96], 4);
+var map = L.map('map', {
+		center: [37.8, -96],
+		zoom: 4,
+		layers: [osm]
+	});
+
+	var baseLayers = {
+		'OpenStreetMap': osm,
+		'Streets': streets
+	};
+
+	var overlays = {
+		'FDA Inspection Site': fdaLocs,
+		'Arthritis-Crude Prevalence': cdcStats,
+	};
+
+	var layerControl = L.control.layers(baseLayers, overlays).addTo(map);
+
+	var satellite = L.tileLayer(mbUrl, {id: 'mapbox/satellite-v9', tileSize: 512, zoomOffset: -1, attribution: mbAttr});
+	layerControl.addBaseLayer(satellite, 'Satellite');
+
 
 	var tiles = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 		maxZoom: 19,
@@ -57,9 +95,11 @@ var map = L.map('map').setView([37.8, -96], 4);
 		info.update();
 	}
 
+
 	function zoomToFeature(e) {
 		map.fitBounds(e.target.getBounds());
 	}
+
 
 	function onEachFeature(feature, layer) {
 		layer.on({
@@ -68,6 +108,7 @@ var map = L.map('map').setView([37.8, -96], 4);
 			click: zoomToFeature
 		});
 	}
+
 
 	function onEachFacility(feature, layer) {
 			var website = feature.properties.website;
@@ -85,14 +126,14 @@ var map = L.map('map').setView([37.8, -96], 4);
 	var geojson_counties = L.geoJson(cdc_stats, {
 		style: style,
 		onEachFeature: onEachFeature
-	}).addTo(map);
+	}).addTo(map).addTo(cdcStats);
 
 
 	/* global statesData */
 	var geojson_facility = L.geoJson(facilityData, {
 		style: style,
 		onEachFeature: onEachFacility
-	}).addTo(map);
+	}).addTo(map).addTo(fdaLocs);
 
 
 	/* cite source of information */
